@@ -2,6 +2,7 @@
 <html lang="en" ng-app="store">
 <head>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" >
 	<title>Angular</title>
 </head>
 <body ng-controller="StoreController as store">
@@ -48,7 +49,7 @@
 							<cite class="clearfix">by: {{review.author}}</cite>
 						</blockquote>
 
-						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
 							<blockquote>
 								<strong>{{reviewCtrl.review.stars}} Stars</strong>
 								{{reviewCtrl.review.body}}
@@ -57,7 +58,7 @@
 
 							<h4>Submit a Review</h4>
 							<div class="form-group">
-							<select ng-model="reviewCtrl.review.stars" class="form-control">
+							<select ng-model="reviewCtrl.review.stars" class="form-control" required>
 								<option value="">Rate the Product</option>
 								<option value="1">1 star</option>
 								<option value="2">2 stars</option>
@@ -67,11 +68,11 @@
 							</select>
 							</div>
 							<div class="form-group">
-								<textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..."></textarea>
+								<textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." required></textarea>
 							</div>
 							<div class="form-group">
 								<label>by: </label>
-								<input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="BobbySugar@example.com">
+								<input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="BobbySugar@example.com" required>
 							</div>
 							<div class="form-group">
 								<input type="submit" value="Submit" class="btn btn-primary" />
