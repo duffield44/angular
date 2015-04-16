@@ -7,20 +7,34 @@
 </head>
 <body ng-controller="StoreController as store">
 	<div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+		<!--  Store Header  -->
 		<header>
       		<h1 class="text-center">Flatlander Crafted Gems</h1>
       		<h2 class="text-center">&#8212; an Angular store &#8212;</h2>
     	</header>
+
+    	<!--  Products Container  -->
 		<ul class="list-group">
+			<!--  Product Container  -->
 			<li class="list-group-item" ng-repeat="product in store.products">
 				<h3>
 					{{product.name}}
 					<em class="pull-right">{{product.price | currency}}</em>		
 				</h3>
-				<div class="img-wrap text-center">
-					<img ng-src="{{product.image}}">
-				</div>	
 
+				<!--Image Gallery-->
+				<div ng-controller="GalleryController as gallery" ng-show="product.images.length">
+					<div class="img-wrap text-center">
+						<img ng-src="{{product.images[gallery.current]}}">
+					</div>
+				</div>	
+				<ul class="img-thumbnails clearfix">
+	            	<li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+	              		<img ng-src="{{image}}" />
+	            	</li>
+          		</ul>
+				
+				<!-- Product Tabs  -->
 				<section ng-controller="PanelController as panel">
 					<ul class="nav nav-pills">
 						<li ng-class="{active:panel.isSelected(1)}"> 
@@ -33,29 +47,40 @@
 							<a href ng-click="panel.selectTab(3)">Reviews</a> 
 						</li>
 					</ul>
+
+					<!--  Description Tab's Content  -->
 					<div class="panel" ng-show="panel.isSelected(1)">
 						<h4>Description</h4>
 						<p>{{product.description}}</p>
 					</div>
+
+					<!--  Spec Tab's Content  -->
 					<div class="panel" ng-show="panel.isSelected(2)">
 						<h4>Specifications</h4>
 						<p>None Yet</p>
 					</div>
+
+					<!--  Review Tab's Content  -->
 					<div class="panel" ng-show="panel.isSelected(3)">
+						<!--  Product Reviews List -->
 						<h4>Reviews</h4>	
 						<blockquote ng-repeat="review in product.reviews">
 							<strong>{{review.stars}} Stars</strong>
 							{{review.body}}
 							<cite class="clearfix">by: {{review.author}}</cite>
 						</blockquote>
-
+						
+						<!--  Review Form -->
 						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+
+							<!--  Live Preview -->
 							<blockquote>
 								<strong>{{reviewCtrl.review.stars}} Stars</strong>
 								{{reviewCtrl.review.body}}
 								<cite class="clearfix">by: {{reviewCtrl.review.author}}</cite>
 							</blockquote>
-
+							
+							<!--  Review Form -->
 							<h4>Submit a Review</h4>
 							<div class="form-group">
 							<select ng-model="reviewCtrl.review.stars" class="form-control" required>
