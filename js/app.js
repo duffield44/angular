@@ -72,6 +72,7 @@ var gems = [
           "images/gem-07.gif",
           "images/gem-08.gif"
         ],
+        reviews: []
 	}
 ];	
 
