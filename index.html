@@ -26,29 +26,8 @@
 				<product-gallery></product-gallery>
 				
 				<!-- Product Tabs  -->
-				<section ng-controller="PanelController as panel">
-					<ul class="nav nav-pills">
-						<li ng-class="{active:panel.isSelected(1)}"> 
-							<a href ng-click="panel.selectTab(1)">Description</a> 
-						</li>
-						<li ng-class="{active:panel.isSelected(2)}"> 
-							<a href ng-click="panel.selectTab(2)">Specifications</a> 
-						</li>
-						<li ng-class="{active:panel.isSelected(3)}"> 
-							<a href ng-click="panel.selectTab(3)">Reviews</a> 
-						</li>
-					</ul>
-
-					<!--  Description Tab's Content  -->
-					<product-descriptions></product-descriptions>
-
-					<!--  Spec Tab's Content  -->
-					<product-specs></product-specs>
-
-					<!--  Review Tab's Content  -->
-					<product-reviews></product-reviews>
-					
-				</section>
+				<product-tabs></product-tabs>
+				
 			</li>		
 		</ul>
 		<script type="text/javascript" src="js/angular.min.js"></script>
