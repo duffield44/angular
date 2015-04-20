@@ -46,6 +46,20 @@ app.directive('productDescriptions', function(){
 	};
 });
 
+app.directive('productSpecs', function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'product-specs.html'
+	};
+});
+
+app.directive('productReviews', function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'product-reviews.html'
+	};
+});
+
 var gems = [
 	{
 		name: 'Azurite',
